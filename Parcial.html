@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,6 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous" />
     <link rel="stylesheet" href="lib/style.css" />
-    <script src="sorttable.js"></script>
     <title>Parcial 1</title>
 </head>
 
@@ -30,29 +30,28 @@
         </div>
         <hr />
         <!--Imagen principal -->
-        <div class="container fluid" style="margin-top:10px; margin-left:0px">
-            <center><img src="Banner.png" alt="Imagen principal" style="margin-left: 0; width:125%; align-content:center"></center>
+        <div class="container fluid" style="margin-top:10px; margin-left:0px; margin-right: 0px">
+            <center><img src="Banner.png" alt="Imagen principal" style="margin-left: 0; width: 125%; align-content:center"></center>
         </div>
         <!--Menu-->
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="margin-bottom: 30px">
-
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" style="color:white">Burgers</a>
+                            <a class="nav-link" onclick="mostrarBurguers()" style="color: white">Burguers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:white">Tacos</a>
+                            <a class="nav-link" onclick="mostrarTacos()" style="color: white">Tacos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:white">Salads</a>
+                            <a class="nav-link" onclick="mostrarSalads()" style="color: white">Salads</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:white">Desserts</a>
+                            <a class="nav-link" onclick="mostrarDesserts()" style="color: white">Desserts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:white">Drinks and sides</a>
+                            <a class="nav-link" onclick="mostrarDS()" style="color: white">Drinks & Sides</a>
                         </li>
                     </ul>
                 </div>
