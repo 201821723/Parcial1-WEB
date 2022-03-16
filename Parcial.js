@@ -66,7 +66,6 @@ function mostrarCate(nombreCat) {
                     small.className = "text-muted"
 
                     let a = document.createElement('a');
-                    a.href = "#"
                     a.className ="btn btn-primary"
 
                     h5.innerHTML = prods["name"]
@@ -138,7 +137,6 @@ carrito.addEventListener("click", function () {
     heading_2.scope = "col"
     heading_2.innerHTML = "Quantity"
 
-
     let heading_3 = document.createElement('th');
     heading_3.scope = "col"
     heading_3.innerHTML = "Description"
@@ -164,6 +162,7 @@ carrito.addEventListener("click", function () {
     thead.appendChild(row_1)
 
     let precioTotal = 0;
+    let h6 = document.createElement('h6');
 
     for (i in pedido) {
         let row = document.createElement('tr');
@@ -172,29 +171,74 @@ carrito.addEventListener("click", function () {
         let td2 = document.createElement('td');
         let td3 = document.createElement('td');
         let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let div0 = document.createElement('div');
+
+        div0.className = "form - group row justify - content - center";
+        div0.style = "margin-top: 0px"
+
+        let a2 = document.createElement('a');
+        a2.className = "btn btn-primary"
+        a2.style = "margin-right: 2px; background-color: #ffba01;"
+        a2.innerHTML = "+"
+
+        a2.addEventListener("click", function () {
+            labelCarrito.innerHTML = (numCarrito + 1) + " items"
+            numCarrito = numCarrito + 1;
+
+            pedido[i][0] = pedido[i][0] + 1 
+            td1.innerHTML = valor[0]
+            td4.innerHTML = Math.round(valor[0] * valor[2] * 100)/100 
+
+            precioTotal = Math.round((precioTotal + pedido[i][2]) * 100) / 100
+
+            h6.innerHTML = "Total: " + precioTotal;
+            
+            row.appendChild(th);
+            row.appendChild(td1);
+            row.appendChild(td2);
+            row.appendChild(td3);
+            row.appendChild(td4);
+            row.appendChild(td5);
+            table.appendChild(h6);
+
+        })
+
+        let a3 = document.createElement('a');
+        a3.className = "btn btn-primary"
+        a3.style = "margin-left: 2px; background-color: #ffba01;"
+        a3.innerHTML = "-"
+
+        a2.addEventListener("click", function () {
+        })
+
+        div0.appendChild(a2)
+        div0.appendChild(a3)
+        
+        td5.appendChild(div0);
 
         th.scope = "row";
 
         let valor = pedido[i]
 
-        th.innerHTML = i
+        th.innerHTML = parseInt(i)+1
         td1.innerHTML = valor[0]
         td2.innerHTML = valor[1]
         td3.innerHTML = valor[2]
-        td4.innerHTML = valor[0] * valor[2]
+        td4.innerHTML = Math.round(valor[0] * valor[2]*100)/100
 
-        precioTotal = precioTotal + parseFloat(td4.innerHTML)
+        precioTotal = Math.round((precioTotal + parseFloat(td4.innerHTML))*100)/100
 
         row.appendChild(th);
         row.appendChild(td1);
         row.appendChild(td2);
         row.appendChild(td3);
         row.appendChild(td4);
+        row.appendChild(td5);
 
         tbody.appendChild(row);
     }
 
-    let h6 = document.createElement('h6');
     h6.innerHTML = "Total: " + precioTotal;
     table.appendChild(h6);
 
