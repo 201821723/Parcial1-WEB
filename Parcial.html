@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-8 d-flex justify-content-end">
                     <a><img src="carrito.png" alt="icono carrito" style="height:35px"></a>
-                    <span class="d-flex mt-3">0 items</span>
+                    <span id="contador" class="d-flex mt-3">0 items</span>
                 </div>
             </div>
         </div>
@@ -39,19 +39,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" onclick="mostrarBurguers()" style="color: white">Burguers</a>
+                            <a class="nav-link" onclick='mostrarCate("Burguers")' style="color: white">Burguers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" onclick="mostrarTacos()" style="color: white">Tacos</a>
+                            <a class="nav-link" onclick='mostrarCate("Tacos")' style="color: white">Tacos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" onclick="mostrarSalads()" style="color: white">Salads</a>
+                            <a class="nav-link" onclick='mostrarCate("Salads")' style="color: white">Salads</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" onclick="mostrarDesserts()" style="color: white">Desserts</a>
+                            <a class="nav-link" onclick='mostrarCate("Desserts")' style="color: white">Desserts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" onclick="mostrarDS()" style="color: white">Drinks & Sides</a>
+                            <a class="nav-link" onclick='mostrarCate("Drinks and Sides")' style="color: white">Drinks & Sides</a>
                         </li>
                     </ul>
                 </div>
