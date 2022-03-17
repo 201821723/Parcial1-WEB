@@ -207,6 +207,12 @@ carrito.addEventListener("click", function () {
             td4.innerHTML = Math.round((parseInt(td1.innerHTML)) * valor[2] * 100) / 100
             h6.innerHTML = "Total: " + Math.round((parseFloat(h6.innerHTML.substring(7)) + valor[2])*100)/100
 
+            for (i in pedido) {
+                if (pedido[i][1] == td2.innerHTML) {
+                    pedido[i][0] = pedido[i][0] + 1
+                }
+            }
+
             row.appendChild(th);
             row.appendChild(td1);
             row.appendChild(td2);
@@ -229,6 +235,12 @@ carrito.addEventListener("click", function () {
             td1.innerHTML = parseInt(td1.innerHTML) - 1
             td4.innerHTML = Math.round((parseInt(td1.innerHTML)) * valor[2] * 100) / 100
             h6.innerHTML = "Total: " + Math.round((parseFloat(h6.innerHTML.substring(7)) - valor[2]) * 100) / 100
+
+            for (i in pedido) {
+                if (pedido[i][1] == td2.innerHTML) {
+                    pedido[i][0] = pedido[i][0] - 1
+                }
+            }
 
             row.appendChild(th);
             row.appendChild(td1);
@@ -285,6 +297,10 @@ carrito.addEventListener("click", function () {
     a1.className = "btn btn-primary"
     a1.innerHTML = "Confirm order"
     div4.appendChild(a1)
+
+    a1.addEventListener("click", function () {
+        console.log(pedido)
+    })
 
     div2.appendChild(div3)
     div2.appendChild(div4)
