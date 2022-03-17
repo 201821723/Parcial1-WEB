@@ -35,17 +35,17 @@ function mostrarCate(nombreCat) {
 
             console.log(nombreCat)
 
-            if (nameYprods["name"] === nombreCat) {
+            if (nameYprods["name"] == nombreCat) {
 
                 let div0 = document.createElement('div');
-                div0.className = "card-deck"
+                div0.className = "row row-cols-lg-5 row-cols-md-5 row-cols-sm-1 row-cols-xs-1 justify-content-center"
 
                 for (j in nameYprods["products"]) {
                     let prods = nameYprods["products"][j]
 
                     let div1 = document.createElement('div');
                     div1.className = "card border-dark mb-3"
-                    div1.style = "width: 18rem"
+                    div1.style = "max-width: 25%; margin-left: 7px; margin-right: 7px"
 
                     let img = document.createElement('img');
                     img.className = "card-img-top"
@@ -67,7 +67,8 @@ function mostrarCate(nombreCat) {
                     p2.style = "font-weight: bold;"
 
                     let a = document.createElement('a');
-                    a.className ="btn btn-primary"
+                    a.className = "btn btn-primary"
+                    a.style = "background-color: #ffba01;"
 
                     h5.innerHTML = prods["name"]
                     p1.innerHTML = prods["description"]
@@ -83,27 +84,27 @@ function mostrarCate(nombreCat) {
 
                     div0.appendChild(div1);
 
-                     a.addEventListener("click", function () {
+                    a.addEventListener("click", function () {
                         labelCarrito.innerHTML = (numCarrito + 1) + " items"
-                         numCarrito = numCarrito + 1;
+                        numCarrito = numCarrito + 1;
 
-                         let esta = "false";
+                        let esta = "false";
 
-                         for (i in pedido) {
-                             if (pedido[i][1] == prods["name"]) {
-                                 pedido[i][0] = pedido[i][0] + 1
-                                 esta = "true";
-                             }
-                         }
+                        for (i in pedido) {
+                            if (pedido[i][1] == prods["name"]) {
+                                pedido[i][0] = pedido[i][0] + 1
+                                esta = "true";
+                            }
+                        }
 
-                         if (pedido.length == 0 || esta == "false") {
-                             let producto = [];
-                             producto.push(1);
-                             producto.push(prods["name"]);
-                             producto.push(prods["price"]);
+                        if (pedido.length == 0 || esta == "false") {
+                            let producto = [];
+                            producto.push(1);
+                            producto.push(prods["name"]);
+                            producto.push(prods["price"]);
 
-                             pedido.push(producto);
-                         }
+                            pedido.push(producto);
+                        }
                     });
                 }
                 div.appendChild(div0);
