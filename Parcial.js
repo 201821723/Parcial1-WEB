@@ -265,11 +265,20 @@ carrito.addEventListener("click", function () {
     div4.className = "col-7 justify-content: right"
 
     let a = document.createElement('a');
-    a.href = "#"
     a.className = "btn btn-primary"
     a.style = "margin-right: 10px; background-color: #f44336;"
     a.innerHTML = "Cancel"
     div4.appendChild(a)
+
+    a.addEventListener("click", function () {
+        var result = confirm("CANCEL THE ORDER\nAre you sure about cancelling the order?");
+        if (result == true) {
+            div.innerHTML = "";
+            numCarrito = 0;
+            labelCarrito.innerHTML = "0 items"
+            pedido = [];
+        }
+    })
 
     let a1 = document.createElement('a');
     a1.href = "#"
