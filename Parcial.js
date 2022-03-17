@@ -10,6 +10,7 @@ let labelCarrito = document.getElementById('contador');
 let numCarrito = 0;
 let pedido = [];
 let carrito = document.getElementById('carrito');
+let elemAdd = [];
 
 function getData(callback) {
     fetch(url).then(res => res.json()).then(res => {
@@ -49,7 +50,7 @@ function mostrarCate(nombreCat) {
                     let img = document.createElement('img');
                     img.className = "card-img-top"
                     img.src = prods["image"]
-                    img.style = "width:90%; margin-top:10px"
+                    img.style = "display: block; margin-left: auto; margin-right: auto; width: 50 %;"
 
                     let div2 = document.createElement('div');
                     div2.className = "card-body"
@@ -58,26 +59,26 @@ function mostrarCate(nombreCat) {
                     h5.className = "card-title"
                     h5.style = "text-align:center"
 
-                    let p = document.createElement('p');
-                    p.className = "card-text"
-                    p.style = "text-align:center"
+                    let p1 = document.createElement('p');
+                    p1.className = "card-text"
 
-                    let small = document.createElement('small');
-                    small.className = "text-muted"
+                    let p2 = document.createElement('p');
+                    p2.className = "card-text"
+                    p2.style = "font-weight: bold;"
 
                     let a = document.createElement('a');
                     a.className ="btn btn-primary"
 
                     h5.innerHTML = prods["name"]
-                    p.innerHTML = prods["description"]
-                    small.innerHTML = prods["price"]
+                    p1.innerHTML = prods["description"]
+                    p2.innerHTML = '$' + prods["price"]
                     a.innerHTML = "Add to cart"
 
                     div1.appendChild(img);
                     div1.appendChild(div2);
                     div2.appendChild(h5);
-                    div2.appendChild(p);
-                    p.appendChild(small);
+                    div2.appendChild(p1);
+                    div2.appendChild(p2);
                     div2.appendChild(a);
 
                     div0.appendChild(div1);
@@ -163,6 +164,8 @@ carrito.addEventListener("click", function () {
 
     let precioTotal = 0;
     let h6 = document.createElement('h6');
+    let div3 = document.createElement('div')
+    div3.className = "col"
 
     for (i in pedido) {
         let row = document.createElement('tr');
@@ -177,31 +180,40 @@ carrito.addEventListener("click", function () {
         div0.className = "form - group row justify - content - center";
         div0.style = "margin-top: 0px"
 
+        let valor = pedido[i]
+
+        th.innerHTML = parseInt(i) + 1
+        td1.innerHTML = valor[0]
+        td2.innerHTML = valor[1]
+        td3.innerHTML = valor[2]
+        td4.innerHTML = Math.round(valor[0] * valor[2] * 100) / 100
+
+        precioTotal = Math.round((precioTotal + parseFloat(td4.innerHTML)) * 100) / 100
+
+        h6.innerHTML = "Total: " + precioTotal;
+        div3.appendChild(h6)
+
         let a2 = document.createElement('a');
         a2.className = "btn btn-primary"
         a2.style = "margin-right: 2px; background-color: #ffba01;"
         a2.innerHTML = "+"
 
         a2.addEventListener("click", function () {
+
             labelCarrito.innerHTML = (numCarrito + 1) + " items"
             numCarrito = numCarrito + 1;
 
-            pedido[i][0] = pedido[i][0] + 1 
-            td1.innerHTML = valor[0]
-            td4.innerHTML = Math.round(valor[0] * valor[2] * 100)/100 
+            td1.innerHTML = parseInt(td1.innerHTML) + 1
+            td4.innerHTML = Math.round((parseInt(td1.innerHTML)) * valor[2] * 100) / 100
+            h6.innerHTML = "Total: " + Math.round((parseFloat(h6.innerHTML.substring(7)) + valor[2])*100)/100
 
-            precioTotal = Math.round((precioTotal + pedido[i][2]) * 100) / 100
-
-            h6.innerHTML = "Total: " + precioTotal;
-            
             row.appendChild(th);
             row.appendChild(td1);
             row.appendChild(td2);
             row.appendChild(td3);
             row.appendChild(td4);
             row.appendChild(td5);
-            table.appendChild(h6);
-
+            div3.appendChild(h6);
         })
 
         let a3 = document.createElement('a');
@@ -209,7 +221,22 @@ carrito.addEventListener("click", function () {
         a3.style = "margin-left: 2px; background-color: #ffba01;"
         a3.innerHTML = "-"
 
-        a2.addEventListener("click", function () {
+        a3.addEventListener("click", function () {
+
+            labelCarrito.innerHTML = (numCarrito - 1) + " items"
+            numCarrito = numCarrito - 1;
+
+            td1.innerHTML = parseInt(td1.innerHTML) - 1
+            td4.innerHTML = Math.round((parseInt(td1.innerHTML)) * valor[2] * 100) / 100
+            h6.innerHTML = "Total: " + Math.round((parseFloat(h6.innerHTML.substring(7)) - valor[2]) * 100) / 100
+
+            row.appendChild(th);
+            row.appendChild(td1);
+            row.appendChild(td2);
+            row.appendChild(td3);
+            row.appendChild(td4);
+            row.appendChild(td5);
+            div3.appendChild(h6);
         })
 
         div0.appendChild(a2)
@@ -218,16 +245,6 @@ carrito.addEventListener("click", function () {
         td5.appendChild(div0);
 
         th.scope = "row";
-
-        let valor = pedido[i]
-
-        th.innerHTML = parseInt(i)+1
-        td1.innerHTML = valor[0]
-        td2.innerHTML = valor[1]
-        td3.innerHTML = valor[2]
-        td4.innerHTML = Math.round(valor[0] * valor[2]*100)/100
-
-        precioTotal = Math.round((precioTotal + parseFloat(td4.innerHTML))*100)/100
 
         row.appendChild(th);
         row.appendChild(td1);
@@ -239,22 +256,32 @@ carrito.addEventListener("click", function () {
         tbody.appendChild(row);
     }
 
-    h6.innerHTML = "Total: " + precioTotal;
-    table.appendChild(h6);
+    let div1 = document.createElement('div')
+    div1.className = "container"
+    let div2 = document.createElement('div')
+    div2.className = "row"
+    
+    let div4 = document.createElement('div')
+    div4.className = "col-7 justify-content: right"
 
     let a = document.createElement('a');
     a.href = "#"
     a.className = "btn btn-primary"
     a.style = "margin-right: 10px; background-color: #f44336;"
     a.innerHTML = "Cancel"
-    table.appendChild(a);
+    div4.appendChild(a)
 
     let a1 = document.createElement('a');
     a1.href = "#"
     a1.className = "btn btn-primary"
     a1.innerHTML = "Confirm order"
-    table.appendChild(a1);
+    div4.appendChild(a1)
 
+    div2.appendChild(div3)
+    div2.appendChild(div4)
+    div1.appendChild(div2)
+
+    table.appendChild(div1)
     div.appendChild(table);
 });
 
